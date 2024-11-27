@@ -951,7 +951,11 @@ def run_simulation(sim, visualizer, n_steps, add_unit_every, save_every, plot_ev
 def get_sim_params_from_dipid(r, h, alpha_sticky_deg, printout=True):
     angle_sticky_rad = np.radians(alpha_sticky_deg)
     
+<<<<<<< HEAD
     l_T = h*np.cos(np.pi/2 - angle_sticky_rad) + 3.94
+=======
+    l_T = h*np.cos(np.pi/2 - angle_sticky_rad) +3.96 #nm 3.96 nm is the length of TTTTTTTTGCGC, which is the shortest binding strand
+>>>>>>> e3260fe (Fix bug in prism dimensions)
     
     a_0 = 2*(r*np.cos(angle_sticky_rad) + l_T)
     r_container = a_0/(2*np.sin(angle_sticky_rad))
