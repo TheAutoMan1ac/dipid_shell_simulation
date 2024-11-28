@@ -30,11 +30,17 @@ simulations:
       - 12
       - 11
       - 10
+      - 9
+      - 8
+      - 7
+      - 6
+      - 5
 
-  # Simulations with random placement (6 repeats each)
+
+  # Simulations with random placement (10 repeats each)
   - random_placement: True
     random_chance: 0.05
-    repeats: 6
+    repeats: 10
     alpha_sticky_deg_values:
       - 35
       - 34
@@ -62,3 +68,8 @@ simulations:
       - 12
       - 11
       - 10
+      - 9
+      - 8
+      - 7
+      - 6
+      - 5
