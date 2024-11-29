@@ -162,56 +162,60 @@ if __name__ == '__main__':
 
     extracted_data = {}
     for i, file in enumerate(FILES):
-        cd = Path().resolve()
-        filepath = cd / file
+        try:
+            cd = Path().resolve()
+            filepath = cd / file
 
-        sim_instance = MolecularDynamicsSimulation.load_state(filepath)
-        last_state = sim_instance.state_trajectory[-1]
+            sim_instance = MolecularDynamicsSimulation.load_state(filepath)
+            last_state = sim_instance.state_trajectory[-1]
+            
+            positions = last_state['positions']
+            positions = positions[:, 0, :]
+            
+            topology = last_state['topology']
+            
+            delta = sim_instance.delta
+            num_monomers = topology.number_of_nodes()
+            
+            scaling = sim_instance.monomer_info['scaling']
+            
+            ellipsoid = Ellipsoid(positions, topology, scaling=scaling)
+            ellipsoid.fit_ellipsoid_pca()
+            surface_area_triangulation = ellipsoid.calc_surface_area(mode='triangulation')
+            surface_area_fit = ellipsoid.calc_surface_area(mode='fit')
+            
+            axes_radii = np.array(ellipsoid.radii)
+            
+            #calculate axes ratio
+            idx_axis_major = np.argmax(axes_radii)
+            axis_major = axes_radii[idx_axis_major]
+            
+            mask = np.ones(len(axes_radii), dtype=bool)
+            mask[idx_axis_major] = False
+            axes_minor = axes_radii[mask] 
+            
+            #calculate mean and error from the two minor axes
+            mean_axes_minor = np.mean(axes_minor)
+            err_mean_minor = np.std(axes_minor, ddof=1)
+            
+            axes_ratio = axis_major/mean_axes_minor
+            err_axes_ratio = axes_ratio*np.sqrt(err_mean_minor**2 / mean_axes_minor**2)
+            
+            extracted_data[i] = {'filename': filepath,
+                                'delta': delta,
+                                'num_monomers': num_monomers,
+                                'axes_radii': axes_radii,
+                                'axes_ratio': axes_ratio,
+                                'err_axes_ratio': err_axes_ratio,
+                                'surface_triangulation': surface_area_triangulation,
+                                'surface_fit': surface_area_fit
+                                }
         
-        positions = last_state['positions']
-        positions = positions[:, 0, :]
-        
-        topology = last_state['topology']
-        
-        delta = sim_instance.delta
-        num_monomers = topology.number_of_nodes()
-        
-        scaling = sim_instance.monomer_info['scaling']
-        
-        ellipsoid = Ellipsoid(positions, topology, scaling=scaling)
-        ellipsoid.fit_ellipsoid_pca()
-        surface_area_triangulation = ellipsoid.calc_surface_area(mode='triangulation')
-        surface_area_fit = ellipsoid.calc_surface_area(mode='fit')
-        
-        axes_radii = np.array(ellipsoid.radii)
-        
-        #calculate axes ratio
-        idx_axis_major = np.argmax(axes_radii)
-        axis_major = axes_radii[idx_axis_major]
-        
-        mask = np.ones(len(axes_radii), dtype=bool)
-        mask[idx_axis_major] = False
-        axes_minor = axes_radii[mask] 
-        
-        #calculate mean and error from the two minor axes
-        mean_axes_minor = np.mean(axes_minor)
-        err_mean_minor = np.std(axes_minor, ddof=1)
-        
-        axes_ratio = axis_major/mean_axes_minor
-        err_axes_ratio = axes_ratio*np.sqrt(err_mean_minor**2 / mean_axes_minor**2)
-        
-        extracted_data[i] = {'filename': filepath,
-                             'delta': delta,
-                             'num_monomers': num_monomers,
-                             'axes_radii': axes_radii,
-                             'axes_ratio': axes_ratio,
-                             'err_axes_ratio': err_axes_ratio,
-                             'surface_triangulation': surface_area_triangulation,
-                             'surface_fit': surface_area_fit
-                            }
-       
-        if PLOT:
-            ellipsoid.plot()
+            if PLOT:
+                ellipsoid.plot()
+        except:
+            print(f"File: {file} caused an error.")
+            
        
     list_delta = [data['delta'] for data in extracted_data.values()]
     list_axes_ratios = [data['axes_ratio'] for data in extracted_data.values()]
