@@ -4,6 +4,7 @@ import pickle
 import copy
 from pathlib import Path
 from datetime import datetime
+import argparse
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 import networkx as nx
@@ -177,14 +178,19 @@ class SimulationAnimator:
         return self.scatter, *self.edge_lines
     
 if __name__ == '__main__':
-    # Load and animate the trajectory
-    filename = './simulations/20241122155037_sim_langevin_dt0.01_delta0.0928680646883268_km0.1_TC20_damping0.1_random0.05.pkl'
-    cd = Path().resolve()
-    filepath = cd / filename
+    # Set up argparse to handle the filename argument
+    parser = argparse.ArgumentParser(description='Load and animate a molecular dynamics simulation.')
+    parser.add_argument('filename', type=str, help='Path to the simulation file')
+    args = parser.parse_args()
 
+    # Resolve the file path
+    cd = Path().resolve()
+    filepath = cd / args.filename
+
+    # Load and process the simulation
     sim_instance = MolecularDynamicsSimulation.load_state(filepath)
     sim_instance.state_trajectory = sim_instance.state_trajectory[-50:]
-    
+
     scaling_factor = sim_instance.monomer_info['scaling']
 
     animator = SimulationAnimator(sim_instance, scaling=scaling_factor, plot_outer_layer=True, loop=False)
