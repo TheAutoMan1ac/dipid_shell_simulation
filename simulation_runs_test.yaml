@@ -4,13 +4,33 @@ simulations:
     random_chance: 0.0
     repeats: 1
     alpha_sticky_deg_values:
-      - 11
-      - 10
-      - 9
-      - 8
-      - 7.9
-      - 7.8
-      - 7.6
-      - 7.4
-      - 7.2
-      - 7
+      - 12
+      #- 15
+      #- 15
+      # - 11
+      # - 9
+      # - 8
+      # - 7.8
+      # - 7.6
+      # - 7.4
+      # - 7
+      # - 6.8
+      # - 6.6
+
+  - random_placement: True
+    random_chance: 0.5
+    repeats: 1
+    alpha_sticky_deg_values:
+      - 12
+
+  - random_placement: True
+    random_chance: 0.05
+    repeats: 1
+    alpha_sticky_deg_values:
+      - 12
+
+  - random_placement: True
+    random_chance: 0.005
+    repeats: 1
+    alpha_sticky_deg_values:
+      - 12

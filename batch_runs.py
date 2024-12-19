@@ -28,8 +28,8 @@ if __name__ == "__main__":
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description='Run multiple simulations based on configuration file.')
     parser.add_argument('--config_file', type=str, default='simulation_config.yaml', help='Path to the configuration file')
-    parser.add_argument('--n_steps', type=int, default=1000000000, help='Number of steps for each simulation (default: 10000000)')
-    parser.add_argument('--max_concurrent', type=int, default=5, help='Maximum number of concurrent simulations (default: 5)')
+    parser.add_argument('--n_steps', type=int, default=10000000000, help='Number of steps for each simulation (default: 10000000)')
+    parser.add_argument('--max_concurrent', type=int, default=20, help='Maximum number of concurrent simulations (default: 5)')
     parser.add_argument('--save_every_batch', type=int, default=50, help='Frequency to save simulation (default: 20)')
     parser.add_argument('--plot_every_batch', type=int, default=100, help='Frequency to plot simulation (default: 20)')
     parser.add_argument('--add_unit_every', type=int, default=20000, help="Chance of randomly placing a monomer")
@@ -80,7 +80,7 @@ if __name__ == "__main__":
                             break
                     else:
                         # No processes have finished yet; wait a bit before checking again
-                        time.sleep(1)
+                        time.sleep(10)
 
     # Wait for any remaining processes to finish
     for p in processes:

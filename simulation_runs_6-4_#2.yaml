@@ -1,0 +1,97 @@
+simulations:
+  # Simulations without random placement
+  - random_placement: False
+    random_chance: 0.0
+    repeats: 1
+    alpha_sticky_deg_values:
+      - 6
+      - 5.8
+      - 5.6
+      - 5.4
+      - 5.2
+      - 5
+      - 4.8
+      - 4.6
+      - 4.4
+      - 4.3
+      - 4
+
+  # Simulations with random placement (6 repeats each)
+  - random_placement: True
+    random_chance: 0.05
+    repeats: 2
+    alpha_sticky_deg_values:
+      - 6
+      - 5.8
+      - 5.6
+      - 5.4
+      - 5.2
+      - 5
+      - 4.8
+      - 4.6
+      - 4.4
+      - 4.3
+      - 4
+
+  - random_placement: True
+    random_chance: 0.005
+    repeats: 2
+    alpha_sticky_deg_values:
+      - 6
+      - 5.8
+      - 5.6
+      - 5.4
+      - 5.2
+      - 5
+      - 4.8
+      - 4.6
+      - 4.4
+      - 4.3
+      - 4
+  - random_placement: False
+    random_chance: 0.0
+    repeats: 2
+    alpha_sticky_deg_values:
+      - 6
+      - 5.8
+      - 5.6
+      - 5.4
+      - 5.2
+      - 5
+      - 4.8
+      - 4.6
+      - 4.4
+      - 4.3
+      - 4
+
+  - random_placement: True
+    random_chance: 0.05
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 6
+      - 5.8
+      - 5.6
+      - 5.4
+      - 5.2
+      - 5
+      - 4.8
+      - 4.6
+      - 4.4
+      - 4.3
+      - 4
+
+  - random_placement: True
+    random_chance: 0.005
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 6
+      - 5.8
+      - 5.6
+      - 5.4
+      - 5.2
+      - 5
+      - 4.8
+      - 4.6
+      - 4.4
+      - 4.3
+      - 4

@@ -5,6 +5,7 @@ from simulation_assembly import MolecularDynamicsSimulation
 import matplotlib.pyplot as plt
 import networkx as nx
 from typing import Literal
+import os
 
 class Ellipsoid:
     def __init__(self, positions, topology, scaling=1):
@@ -149,11 +150,15 @@ class Ellipsoid:
 
 if __name__ == '__main__':
     PLOT = True
-    
+    USE_FOLDER=True
     # Load and animate the trajectory
-    FILES = [
-        './Simulation/simulations/20241209123840_sim_langevin_dt0.01_delta0.05099817454927725_km1_TC20_damping0.1_random0.0.pkl'
-    ]
+    if not USE_FOLDER:
+        FILES = [
+            'simulations/20241126183708_sim_langevin_dt0.01_delta0.2120138165619025_km0.1_TC20_damping0.1.pkl'
+        ]
+    else:
+        directory = "simulations"
+        FILES = [os.path.join(directory, f) for f in os.listdir(directory)]
 
     extracted_data = {}
     for i, file in enumerate(FILES):

@@ -1,0 +1,138 @@
+simulations:
+  # Simulations without random placement
+  - random_placement: False
+    random_chance: 0.0
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+  # Simulations with random placement (6 repeats each)
+  - random_placement: True
+    random_chance: 0.05
+    repeats: 2
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+  - random_placement: True
+    random_chance: 0.005
+    repeats: 2
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+
+  - random_placement: True
+    random_chance: 0.1
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+  
+  - random_placement: True
+    random_chance: 0.05
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+  - random_placement: True
+    random_chance: 0.005
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+  - random_placement: True
+    random_chance: 0.05
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+  - random_placement: True
+    random_chance: 0.005
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
+
+  - random_placement: True
+    random_chance: 0.1
+    repeats: 4
+    alpha_sticky_deg_values:
+      - 7.8
+      - 7.6
+      - 7.4
+      - 7.2
+      - 7
+      - 6.8
+      - 6.6
+      - 6.4
+      - 6.3
+      - 6
